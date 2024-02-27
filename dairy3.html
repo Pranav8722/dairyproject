@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milk Collection App</title>
+        <link rel="stylesheet" href="mystyle.css">
+        <script src="script.js"></script>
+</head>
+<body>
+
+
+    <header>
+        <nav class="navbar">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact us</a></li>
+                <li><a href="try.html">Records</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+
+
+    <div class="container">
+        <h2>Milk Collection App</h2>
+        <form id="milkForm">
+            <label for="cowID">Cow ID:</label>
+            <input type="text" id="cowID" required>
+            <label for="quantity">Quantity (Liters):</label>
+            <input type="number" id="quantity" required>
+            <label for="fatContent">Fat Content (%):</label>
+            <input type="number" id="fatContent" required>
+            <label for="collectionDate">Collection Date:</label>
+            <input type="date" id="collectionDate" required>
+            <button type="submit">Submit</button>
+        </form>
+
+
+        <h4>___________________________________________________________________________________________</h4>
+
+
+        <h2>Previous Milk Collections</h2>
+        <div class="search">
+        <h3>search in table</h3>
+    <input type="text" id="searchInput" placeholder="Search for Cow ID.." onkeyup="searchTable()">
+</div>
+
+        <table id="collectionTable">
+            <tr>
+                <th>Cow ID</th>
+                <th>Quantity (Liters)</th>
+                <th>Fat Content (%)</th>
+                <th>Collection Date</th>
+                <th>Price</th>
+            </tr>
+
+    </div>
+</body>
+</html>
