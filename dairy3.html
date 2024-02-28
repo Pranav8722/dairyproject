@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Milk Collection App</title>
-        <link rel="stylesheet" href="mystyle.css">
-        <script src="script.js"></script>
+    <link rel="stylesheet" href="mystyle.css">
+    
 </head>
 <body>
-
-
     <header>
         <nav class="navbar">
             <ul>
@@ -22,33 +20,30 @@
             </ul>
         </nav>
     </header>
-
-
     <div class="container">
         <h2>Milk Collection App</h2>
-        <form id="milkForm">
-            <label for="cowID">Cow ID:</label>
-            <input type="text" id="cowID" required>
+            <form id="milkForm" action="connect.php" method="post">
+            
+            <label for="cowID">Cow ID:</label >
+            <input type="text" id="cowID" required name="cowID">
             <label for="quantity">Quantity (Liters):</label>
-            <input type="number" id="quantity" required>
+            <input type="number" id="quantity" required name="quantity">
             <label for="fatContent">Fat Content (%):</label>
-            <input type="number" id="fatContent" required>
+            <input type="number" id="fatContent" required name="fatContent">
             <label for="collectionDate">Collection Date:</label>
-            <input type="date" id="collectionDate" required>
+            <input type="date" id="collectionDate" required name="collectionDate">
             <button type="submit">Submit</button>
+            <br>
         </form>
-
-
         <h4>___________________________________________________________________________________________</h4>
-
-
         <h2>Previous Milk Collections</h2>
         <div class="search">
         <h3>search in table</h3>
     <input type="text" id="searchInput" placeholder="Search for Cow ID.." onkeyup="searchTable()">
 </div>
-
-        <table id="collectionTable">
+<div class="scrollable-table">
+<div class="container1">
+        <table id="collectionTable" >
             <tr>
                 <th>Cow ID</th>
                 <th>Quantity (Liters)</th>
@@ -56,43 +51,44 @@
                 <th>Collection Date</th>
                 <th>Price</th>
             </tr>
-
+        </div>
     </div>
+</table>
+    </div>
+    <script src="script.js"></script>
     <script>
-        
-document.getElementById('milkForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const cowID = document.getElementById('cowID').value;
-    const quantity = parseFloat(document.getElementById('quantity').value);
-    const fatContent = parseFloat(document.getElementById('fatContent').value);
-    const collectionDate = document.getElementById('collectionDate').value;
-    const price = calculatePrice(quantity, fatContent); // Calculate price based on quantity and fat content
+        document.getElementById('milkForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const cowID = document.getElementById('cowID').value;
+            const quantity = parseFloat(document.getElementById('quantity').value);
+            const fatContent = parseFloat(document.getElementById('fatContent').value);
+            const collectionDate = document.getElementById('collectionDate').value;
+            const price = calculatePrice(quantity, fatContent); // Calculate price based on quantity and fat content
 
-    // Insert data into the table
-    const table = document.getElementById('collectionTable');
-    const row = table.insertRow(-1);
-    const cellCowID = row.insertCell(0);
-    const cellQuantity = row.insertCell(1);
-    const cellFatContent = row.insertCell(2);
-    const cellCollectionDate = row.insertCell(3);
-    const cellPrice = row.insertCell(4);
+            // Insert data into the table
+            const table = document.getElementById('collectionTable');
+            const row = table.insertRow(-1);
+            const cellCowID = row.insertCell(0);
+            const cellQuantity = row.insertCell(1);
+            const cellFatContent = row.insertCell(2);
+            const cellCollectionDate = row.insertCell(3);
+            const cellPrice = row.insertCell(4);
 
-    cellCowID.textContent = cowID;
-    cellQuantity.textContent = quantity;
-    cellFatContent.textContent = fatContent;
-    cellCollectionDate.textContent = collectionDate;
-    cellPrice.textContent = '₹' + price.toFixed(2); // Display price with 2 decimal places
-});
+            cellCowID.textContent = cowID;
+            cellQuantity.textContent = quantity;
+            cellFatContent.textContent = fatContent;
+            cellCollectionDate.textContent = collectionDate;
+            cellPrice.textContent = '₹' + price.toFixed(2); // Display price with 2 decimal places
+        });
 
-function calculatePrice(quantity, fatContent) {
-    const basePricePerLiter = 25; // Base price per liter of milk
-    const fatContentFactor = 0.5; // Price factor based on fat content
+        function calculatePrice(quantity, fatContent) {
+            const basePricePerLiter = 25; // Base price per liter of milk
+            const fatContentFactor = 0.5; // Price factor based on fat content
 
-    // Calculate price based on quantity and fat content
-    const price = (basePricePerLiter * quantity) + (fatContentFactor * fatContent);
-    return price;
-}
-
+            // Calculate price based on quantity and fat content
+            const price = (basePricePerLiter * quantity) + (fatContentFactor * fatContent);
+            return price;
+        }
     </script>
 </body>
 </html>
